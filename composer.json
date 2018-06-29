@@ -45,8 +45,8 @@
   },
   "repositories": [
     {
-      "type": "vcs",
-      "url": "git@github.com:steffjenl/flysystem-azure-blob-storage.git"
+      "type": "git",
+      "url": "https://github.com/steffjenl/flysystem-azure-blob-storage.git"
     }
   ]
 }
