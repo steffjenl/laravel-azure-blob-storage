@@ -25,18 +25,15 @@ Then add this to the `disks` section of `config/filesystems.php`:
             'name'      => env('AZURE_STORAGE_NAME'),
             'key'       => env('AZURE_STORAGE_KEY'),
             'container' => env('AZURE_STORAGE_CONTAINER'),
+            'prefix'    => env('AZURE_STORAGE_PREFIX', null),
+            'url'       => env('AZURE_STORAGE_URL', null),
         ],
 ```
 
 Finally, add the fields `AZURE_STORAGE_NAME`, `AZURE_STORAGE_KEY` and `AZURE_STORAGE_CONTAINER` to your `.env` file with the appropriate credentials. Then you can set the `azure` driver as either your default or cloud driver and use it to fetch and retrieve files as usual.
 
-Constructing a URL
-------------------
+# Configuration
 
-This driver doesn't support the `Storage::url($path)` method, and adding support as a third-party package doesn't appear to be practical. However, you can construct a URL to retrieve the asset as follows:
+If you use a DSN you can enter your DNS address in the AZURE_STORAGE_URL field
 
-```php
-$url = 'https://' . config('filesystems.disks.azure.name'). '.blob.core.windows.net/' . config('filesystems.disks.azure.container') . '/' . $filename;
-```
-
-You may want to create a helper function for this.
+If you want to use a prefix so that you always work in a specific folder, you can use the AZURE_STORAGE_PREFIX field
