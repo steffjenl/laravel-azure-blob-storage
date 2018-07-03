@@ -5,8 +5,8 @@ namespace SteffjeNL\LaravelAzureBlobStorage;
 use Storage;
 use League\Flysystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
-use League\Flysystem\AzureBlobStorage\AzureBlobStorageAdapter;
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
+use function sprintf;
 
 /**
  * Service provider for Azure Blob Storage
@@ -28,7 +28,7 @@ class AzureBlobStorageServiceProvider extends ServiceProvider
             );
 
             $client = BlobRestProxy::createBlobService($endpoint);
-            return new Filesystem(new AzureBlobStorageAdapter($client, $config['container'], $config['prefix'], $config['key'], $config['url']));
+            return new Filesystem(new AzureBlobStorageExtendedAdapter($client, $config['container'], $config['prefix'], $config['key'], $config['url']));
         });
     }
 
