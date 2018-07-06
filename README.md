@@ -3,6 +3,8 @@
 
 Microsoft Azure Blob Storage integration for Laravel's Storage API
 
+This package uses the new azure storage blob package and extends the AzureBlobStorageAdapter package for specific Laravel functions. You can also use this on non orther frameworks with Flysystem Filesystem.
+
 # Installation
 
 Install the package using composer:
@@ -34,6 +36,6 @@ Finally, add the fields `AZURE_STORAGE_NAME`, `AZURE_STORAGE_KEY` and `AZURE_STO
 
 # Configuration
 
-If you use a DSN you can enter your DNS address in the AZURE_STORAGE_URL field
+If you use a DSN you can enter your DNS address in the `AZURE_STORAGE_URL` field
 
-If you want to use a prefix so that you always work in a specific folder, you can use the AZURE_STORAGE_PREFIX field
+If you want to use a prefix so that you always work in a specific folder, you can use the `AZURE_STORAGE_PREFIX` field
