@@ -3,7 +3,7 @@
 
 Microsoft Azure Blob Storage integration for Laravel's Storage API
 
-This package uses the new azure storage blob package and extends the AzureBlobStorageAdapter package for specific Laravel functions. You can also use this on non orther frameworks with Flysystem Filesystem.
+This package uses the new azure storage blob package and extends the AzureBlobStorageAdapter package for specific Laravel functions. You can also use this on frameworks with Flysystem Filesystem support.
 
 # Installation
 
