@@ -104,4 +104,8 @@ class AzureBlobStorageExtendedAdapter extends AzureBlobStorageAdapter
             , $sasKey);
     }
 
+    public function getClient()
+    {
+        return $this->client;
+    }
 }
