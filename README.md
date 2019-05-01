@@ -45,13 +45,18 @@ If you want to use Storage Emulator you can set `AZURE_STORAGE_LOCAL_ADDRESS` to
 When using `local` the connection string will be `UseDevelopmentStorage=true`.
 
 ## Example config for local emulator
+```php
 AZURE_STORAGE_LOCAL_ADDRESS=local
 AZURE_STORAGE_NAME=devstoreaccount1
 AZURE_STORAGE_KEY=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==
 AZURE_STORAGE_CONTAINER=CONTAINER_NAME_HERE
+```
 
 ## Example config for remote emulator
+```php
 AZURE_STORAGE_LOCAL_ADDRESS=http://192.168.0.2:10000/devstoreaccount1
 AZURE_STORAGE_NAME=devstoreaccount1
 AZURE_STORAGE_KEY=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==
 AZURE_STORAGE_CONTAINER=CONTAINER_NAME_HERE
+```
+
