@@ -29,7 +29,7 @@ class AzureBlobStorageServiceProvider extends ServiceProvider
     public function boot()
     {
         Storage::extend('azure', function ($app, $config) {
-            if ($config['local_address'] == 'local')
+            if (!empty($config['local_address']) && $config['local_address'] == 'local')
             {
                 $endpoint = 'UseDevelopmentStorage=true';
             }
