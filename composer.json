@@ -8,7 +8,7 @@
     "azure"
   ],
   "require": {
-    "league/flysystem-azure-blob-storage": "^1.0"
+    "league/flysystem-azure-blob-storage": "^3.0"
   },
   "require-dev": {
     "php": ">=7.1.3",
