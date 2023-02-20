@@ -7,10 +7,16 @@ This package uses the new azure storage blob package and extends the AzureBlobSt
 
 # Installation
 
-Install the package using composer:
+Install the package using composer when using Laravel 9 and higher:
 
 ```bash
 composer require steffjenl/laravel-azure-blob-storage
+```
+
+Install the package using composer when using Laravel 8 and lower:
+
+```bash
+composer require steffjenl/laravel-azure-blob-storage:1.0.5
 ```
 
 On Laravel versions before 5.5 you also need to add the service provider to `config/app.php` manually:
