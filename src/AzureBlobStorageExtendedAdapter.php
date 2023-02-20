@@ -3,6 +3,7 @@
 namespace SteffjeNL\LaravelAzureBlobStorage;
 
 use League\Flysystem\AzureBlobStorage\AzureBlobStorageAdapter;
+use League\Flysystem\PathPrefixer;
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
 use MicrosoftAzure\Storage\Blob\BlobSharedAccessSignatureHelper;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
@@ -47,13 +48,13 @@ class AzureBlobStorageExtendedAdapter extends AzureBlobStorageAdapter
      * @param null $accountKey
      * @param null $baseUrl
      */
-    public function __construct(BlobRestProxy $client, $container, $prefix = null, $accountKey = null, $baseUrl = null)
+    public function __construct(BlobRestProxy $client, $container, string $prefix = '', $accountKey = null, $baseUrl = null)
     {
         $this->client = $client;
         $this->container = $container;
         $this->baseUrl = $baseUrl;
         $this->accountKey = $accountKey;
-        $this->setPathPrefix($prefix);
+        $this->prefixer = new PathPrefixer($prefix);
         parent::__construct($client, $container, $prefix);
     }
 

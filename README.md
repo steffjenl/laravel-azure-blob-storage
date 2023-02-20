@@ -28,7 +28,7 @@ Then add this to the `disks` section of `config/filesystems.php`:
             'name'              => env('AZURE_STORAGE_NAME'),
             'key'               => env('AZURE_STORAGE_KEY'),
             'container'         => env('AZURE_STORAGE_CONTAINER'),
-            'prefix'            => env('AZURE_STORAGE_PREFIX', null),
+            'prefix'            => env('AZURE_STORAGE_PREFIX', ''),
             'url'               => env('AZURE_STORAGE_URL', null),
         ],
 ```
