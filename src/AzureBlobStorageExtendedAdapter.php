@@ -2,8 +2,8 @@
 
 namespace SteffjeNL\LaravelAzureBlobStorage;
 
+use DateTime;
 use League\Flysystem\AzureBlobStorage\AzureBlobStorageAdapter;
-use League\Flysystem\PathPrefixer;
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
 use MicrosoftAzure\Storage\Blob\BlobSharedAccessSignatureHelper;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
@@ -19,54 +19,38 @@ use function sprintf;
  */
 class AzureBlobStorageExtendedAdapter extends AzureBlobStorageAdapter
 {
-    /**
-     * @var BlobRestProxy $client
-     */
-    private $client;
-
-    /**
-     * @var string $container
-     */
-    private $container;
-
-    /**
-     * @var string $baseUrl
-     */
-    private $baseUrl;
-
-    /**
-     * @var string $accountKey
-     */
-    private $accountKey;
+    private BlobRestProxy $client;
+    private string $container;
+    private ?string $baseUrl;
+    private ?string $accountKey;
 
     /**
      * AzureBlobStorageExtendedAdapter constructor.
      *
      * @param BlobRestProxy $client
-     * @param $container
-     * @param null $prefix
-     * @param null $accountKey
-     * @param null $baseUrl
+     * @param string $container
+     * @param string $prefix
+     * @param string|null $accountKey
+     * @param string|null $baseUrl
      */
-    public function __construct(BlobRestProxy $client, $container, string $prefix = '', $accountKey = null, $baseUrl = null)
+    public function __construct(BlobRestProxy $client, string $container, string $prefix = '', ?string $accountKey = null, ?string $baseUrl = null)
     {
         $this->client = $client;
         $this->container = $container;
         $this->baseUrl = $baseUrl;
         $this->accountKey = $accountKey;
-        $this->prefixer = new PathPrefixer($prefix);
         parent::__construct($client, $container, $prefix);
     }
 
     /**
      * Generate Temporary Url with SAS query
      *
-     * @param $path
-     * @param $ttl
+     * @param string $path
+     * @param DateTime|string $ttl
      * @param $options
      * @return string
      */
-    public function getTemporaryUrl($path, $ttl, $options)
+    public function getTemporaryUrl(string $path, DateTime|string $ttl, $options): string
     {
         $sas = new BlobSharedAccessSignatureHelper($this->client->getAccountName(), $this->accountKey);
         $sasString = $sas->generateBlobServiceSharedAccessSignatureToken(
@@ -84,13 +68,13 @@ class AzureBlobStorageExtendedAdapter extends AzureBlobStorageAdapter
     /**
      * Generate public url
      *
-     * @param $path
+     * @param string $path
      * @param string $sasKey
      * @return string
      */
-    public function getUrl($path, $sasKey = '')
+    public function getUrl(string $path, string $sasKey = ''): string
     {
-        if ( ! empty($this->baseUrl)) {
+        if (!empty($this->baseUrl)) {
             return sprintf('%s/%s/%s%s'
                 , $this->baseUrl
                 , $this->container
@@ -105,7 +89,7 @@ class AzureBlobStorageExtendedAdapter extends AzureBlobStorageAdapter
             , $sasKey);
     }
 
-    public function getClient()
+    public function getClient(): BlobRestProxy
     {
         return $this->client;
     }
